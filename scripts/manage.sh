@@ -4,7 +4,8 @@
 COMMAND=$1
 
 # 确保使用 Lima 的 Context
-export DOCKER_CONTEXT=lima
+export DOCKER_CONTEXT=default
+#export DOCKER_CONTEXT=docker-rootfull
 
 case $COMMAND in
   start)

@@ -1,5 +1,6 @@
 # mcp-infra
 
+```
 mcp-infra/
 ├── .env.example              # 环境变量模板 (API Keys, DB密码) - 不要提交 .env!
 ├── .gitignore                # 忽略文件列表
@@ -9,7 +10,7 @@ mcp-infra/
 ├── images/                   # 自定义 Docker 镜像构建
 │   ├── gateway/              # 通用 MCP Gateway 镜像 (Node + Supergateway)
 │   │   └── Dockerfile
-│   └── python-env/           # 如果你需要跑 Python 类的 MCP Server
+│   └── python-env/           # 如果需要跑 Python 类的 MCP Server
 │       └── Dockerfile
 │
 ├── servers/                  # 各个 MCP Server 的具体配置或挂载数据
@@ -25,8 +26,9 @@ mcp-infra/
 ├── scripts/                  # 维护脚本
 │   ├── start.sh              # 启动服务
 │   ├── update-images.sh      # 更新基础镜像
-│   └── connect-cursor.sh     # (可选) 快速打印 SSE 连接地址
+│   └── connect-cursor.sh     # 快速打印 SSE 连接地址
 │
-└── docs/                     # 你的知识库
+└── docs/                     # 文档
     ├── architecture.md       # 架构说明
-    └── troubleshooting.md    # 常见问题 (比如 Lima 网络不通怎么办)
+    └── troubleshooting.md    # 常见问题
+```
