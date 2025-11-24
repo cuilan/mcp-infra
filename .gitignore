@@ -1,0 +1,14 @@
+# Docker
+.env
+docker-compose.override.yml
+
+# Data volumes
+servers/*/data/
+.lima-data/
+
+# Node
+node_modules/
+npm-debug.log
+
+# System
+.DS_Store

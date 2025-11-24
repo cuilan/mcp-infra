@@ -1,0 +1,27 @@
+services:
+  # --- 基础网关服务 ---
+  gateway-fs:
+    build: ./images/gateway
+    container_name: mcp-fs
+    restart: unless-stopped
+    # 宿主机 SSE 端口映射
+    ports:
+      - "${MCP_FS_PORT:-8080}:8080"
+    volumes:
+      # 将宿主机的特定目录挂载进去，让 AI 可以读写
+      - ./workspace_data:/data
+    # 启动命令：Stido -> SSE
+    command: >
+      npx supergateway --port 8080 --stdio 
+      "npx -y @modelcontextprotocol/server-filesystem /data"
+
+  # --- 数据库服务 (可选) ---
+  # gateway-pg:
+  #   build: ./images/gateway
+  #   ports:
+  #     - "${MCP_PG_PORT:-8081}:8081"
+  #   environment:
+  #     - DATABASE_URL=${DATABASE_URL}
+  #   command: >
+  #     npx supergateway --port 8081 --stdio
+  #     "npx -y @modelcontextprotocol/server-postgresql ${DATABASE_URL}"
