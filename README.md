@@ -1,5 +1,7 @@
 # mcp-infra
 
+用于管理我的 MCP 基础设施
+
 ```
 mcp-infra/
 ├── .env.example              # 环境变量模板 (API Keys, DB密码) - 不要提交 .env!
