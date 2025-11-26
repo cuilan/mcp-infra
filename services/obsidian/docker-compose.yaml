@@ -1,0 +1,26 @@
+# Obsidian MCP 服务
+# 使用官方 server-filesystem 直接操作文件，无需 REST API
+
+services:
+  gateway-obsidian:
+    image: mcp-infra/gateway:latest
+    container_name: mcp-obsidian
+    restart: unless-stopped
+    ports:
+      - "${MCP_OBSIDIAN_PORT:-8082}:8082"
+    volumes:
+      # 挂载 Obsidian Vault
+      # 注意：在 Lima 环境下，/Users 目录通常已自动挂载
+      - /Users/zhangyan/OneDrive/Obsidian:/vault
+    command: >
+      npx supergateway --port 8082 --stdio 
+      "npx -y @modelcontextprotocol/server-filesystem /vault"
+    networks:
+      - mcp-network
+    labels:
+      - "mcp.service=obsidian"
+      - "mcp.description=Obsidian 笔记管理服务 (Filesystem)"
+
+networks:
+  mcp-network:
+    external: true

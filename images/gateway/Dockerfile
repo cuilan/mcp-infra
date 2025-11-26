@@ -10,6 +10,9 @@ RUN npm install -g supergateway \
     @modelcontextprotocol/server-filesystem \
     @modelcontextprotocol/server-memory \
     @modelcontextprotocol/server-brave-search
+    # 注意：@modelcontextprotocol/server-git 暂未发布到 npm
+    # @modelcontextprotocol/server-github 是可用的，如果需要可以取消注释
+    # @modelcontextprotocol/server-github
 
 WORKDIR /app
 

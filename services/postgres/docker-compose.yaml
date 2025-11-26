@@ -1,0 +1,23 @@
+# PostgreSQL MCP 服务（示例）
+
+services:
+  gateway-pg:
+    image: mcp-infra/gateway:latest
+    container_name: mcp-postgres
+    restart: unless-stopped
+    ports:
+      - "${MCP_PG_PORT:-8081}:8081"
+    environment:
+      - DATABASE_URL=${DATABASE_URL}
+    command: >
+      npx supergateway --port 8081 --stdio
+      "npx -y @modelcontextprotocol/server-postgresql ${DATABASE_URL}"
+    networks:
+      - mcp-network
+    labels:
+      - "mcp.service=postgres"
+      - "mcp.description=PostgreSQL 数据库访问服务"
+
+networks:
+  mcp-network:
+    external: true

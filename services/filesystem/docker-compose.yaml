@@ -1,0 +1,24 @@
+# 文件系统 MCP 服务
+
+services:
+  gateway-fs:
+    image: mcp-infra/gateway:latest
+    container_name: mcp-fs
+    restart: unless-stopped
+    ports:
+      - "${MCP_FS_PORT:-8080}:8080"
+    volumes:
+      # 将宿主机的特定目录挂载进去，让 AI 可以读写
+      - ~/code/weattech:/data
+    command: >
+      npx supergateway --port 8080 --stdio 
+      "npx -y @modelcontextprotocol/server-filesystem /data"
+    networks:
+      - mcp-network
+    labels:
+      - "mcp.service=filesystem"
+      - "mcp.description=文件系统访问服务"
+
+networks:
+  mcp-network:
+    external: true
